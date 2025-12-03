@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="MIST: Multi-stage Transcranial Artifact Suppression Network for Brain Ultrasound Localization Microscopy" />
+    <meta name="keywords" content="Ultrasound, Transcranial, Brain Imaging, Deep Learning, CycleGAN, Uformer, MIST" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MIST: Transcranial Artifact Suppression</title>
+    <link rel="icon" href="./static/images/orientation.png" type="image/png" />
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8XDYQS1FM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F8XDYQS1FM');
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+
+    <style>
+      body {
+        font-family: "Noto Sans", sans-serif;
+        margin: 0;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 1rem;
+      }
+      footer {
+        background: #f5f5f5;
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+      a {
+        color: #3273dc;
+      }
+      .figure-strip img {
+        width: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .publication-title {
+        font-family: 'Google Sans', sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop has-text-centered">
+          <h1 class="title is-1 publication-title">MIST</h1>
+          <h2 class="subtitle is-3">
+            Multi-stage Transcranial Artifact Suppression Network for<br>Brain Ultrasound Localization Microscopy
+          </h2>
+
+          <p class="is-size-5">
+            <span class="author-block">
+              Jihyeok Jung<sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Hyungmin Lee<sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Haedong Jeong<sup>2</sup>,
+            </span>
+            <span class="author-block">
+              Sua Bae<sup>1</sup>
+            </span>
+          </p>
+
+          <p class="is-size-6 has-text-grey">
+            <sup>1</sup>Department of Electronic Engineering, Sogang University<br>
+            <sup>2</sup>Department of Art and Technology, Sogang University
+          </p>
+          
+          <div class="buttons is-centered mt-4">
+            <a href="#" class="button is-dark is-rounded is-outlined" disabled>
+              <span class="icon"><i class="fas fa-file-pdf"></i></span>
+              <span>Paper (Coming Soon)</span>
+            </a>
+            <a href="https://mist.sogang.ac.kr" class="button is-dark is-rounded">
+              <span class="icon"><i class="fas fa-globe"></i></span>
+              <span>Lab Website</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="section">
+        <h2 class="title is-3 has-text-centered">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <strong>Background & Limitation:</strong> Ultrasound signals become blurred and distorted as they pass through the skull, making it difficult to clearly visualize cerebral vasculature. A major bottleneck in transcranial ultrasound research is the absence of ground-truth data; open-skull and transcranial image pairs cannot be acquired under identical conditions (e.g., due to tissue deformation or bubble shift).
+          </p>
+          <p>
+            <strong>Our Goal:</strong> To overcome the absence of ground-truth open-skull and transcranial observation pairs in clinical data, we generate structure-preserving pseudo pairs and train a model to restore transcranial images to open-skull quality.
+          </p>
+          <p>
+            <strong>MIST (Multi-stage Image Synthesis and Transcranial restoration):</strong> We propose a multi-stage network. First, we use CycleGAN with a Localization Loss to convert open-skull images into transcranial-style images, building a paired dataset while preserving microbubble spatial information. Second, we train a Uformer model to restore these synthetic transcranial images back to open-skull quality. This approach performs denoising, resolution enhancement, and PSF restoration.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="title is-3 has-text-centered">Methodology</h2>
+        <div class="content">
+          <h4 class="title is-4">Stage 1: CycleGAN + Localization Loss</h4>
+          <p>
+            Since paired data is unavailable, we generate synthetic transcranial data from real open-skull images. 
+            Standard CycleGAN alone can distort structures and cause hallucinated artifacts. We introduce a <strong>Localization Loss</strong> to preserve microbubble dynamics and apply only the transcranial degradation pattern.
+          </p>
+          
+          <h4 class="title is-4">Stage 2: Uformer Restoration</h4>
+          <p>
+            Using the generated pseudo-pairs (Open-skull &harr; Synthetic Transcranial), we train a supervised restoration model (Uformer). 
+            This model learns to reverse the degradation, effectively removing skull-induced artifacts and enhancing vessel clarity.
+          </p>
+        </div>
+        
+        <div class="figure-strip has-text-centered">
+          <figure>
+            <img src="./static/images/mist_pipeline_placeholder.jpg" alt="MIST Pipeline Diagram" style="background-color: #eee; min-height: 200px;" />
+            <figcaption class="mt-2">Figure 1: The MIST Pipeline. Stage 1 generates pseudo-pairs, and Stage 2 restores the image.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+        <div class="content">
+          <ul>
+            <li>
+              <strong>Quantitative Evaluation:</strong> MIST achieves significantly higher PSNR compared to baselines (Richardson-Lucy and CycleGAN-only). 
+              The Uformer restoration improves PSNR by <strong>7-8 dB</strong> (up to <strong>35.92 dB</strong>).
+            </li>
+            <li>
+              <strong>Qualitative Evaluation:</strong> Clearer vascular structures are observed. The network restores faint vessels and sharpens the image, overcoming the blur caused by the skull.
+            </li>
+            <li>
+              <strong>Simulation:</strong> We also validated performance using simulation data generated by the PROTEUS simulator (Musubi flow solver + Acoustic module), confirming the restoration capabilities.
+            </li>
+          </ul>
+        </div>
+
+        <div class="columns is-centered is-variable is-4 mt-4">
+          <div class="column is-one-half has-text-centered">
+            <figure>
+              <img src="./static/images/result_chart_placeholder.jpg" alt="PSNR Comparison" style="background-color: #eee; min-height: 200px;"/>
+              <figcaption>PSNR Improvement over Epochs</figcaption>
+            </figure>
+          </div>
+          <div class="column is-one-half has-text-centered">
+            <figure>
+              <img src="./static/images/result_visual_placeholder.jpg" alt="Visual Results" style="background-color: #eee; min-height: 200px;"/>
+              <figcaption>Visual Comparison: Transcranial vs. MIST Restoration</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="title is-3">Conclusion</h2>
+        <p>
+          MIST restores severely degraded transcranial ultrasound into clear cerebrovascular images without invasive craniotomy. 
+          It delivers vascular enhancement, improved image quality, and significant PSNR gains. 
+          Future work will expand quantitative and qualitative evaluations to verify physical fidelity.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="title is-4">References</h2>
+        <div class="content is-small">
+          <ol>
+            <li>Wang, Zhendong, et al. "Uformer: A general u-shaped transformer for image restoration." CVPR 2022.</li>
+            <li>Zhu, Jun-Yan, et al. "Unpaired image-to-image translation using cycle-consistent adversarial networks." ICCV 2017.</li>
+            <li>Blanken, Nathan, et al. "PROTEUS: A physically realistic contrast-enhanced ultrasound simulator..." IEEE TUFFC, 2024.</li>
+            <li>Errico, C., et al. "Ultrafast ultrasound localization microscopy for deep super-resolution vascular imaging." Nature, 2015.</li>
+          </ol>
+        </div>
+      </section>
+      
+      <section class="section">
+        <h2 class="title is-4">Contact / Cite</h2>
+        <p>
+          <strong>SOGANG MIST LABORATORY</strong><br>
+          Department of Electronic Engineering, Sogang University, Seoul, Republic of Korea.<br>
+          Please refer to the lab website for more details.
+        </p>
+      </section>
+    </div>
+
+    <footer>
+      <p>
+        Project page for <strong>MIST</strong>. Based on the project poster.
+      </p>
+    </footer>
+  </body>
+</html>
