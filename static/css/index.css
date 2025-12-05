@@ -1,157 +1,124 @@
+/* 기본 설정 */
 body {
   font-family: 'Noto Sans', sans-serif;
+  background-color: #fcfcfc;
+  color: #4a4a4a;
 }
 
-
-.footer .icon-link {
-    font-size: 25px;
-    color: #000;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px; /* 내비게이션 바 높이만큼 오프셋 */
 }
 
-.link-block a {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.dnerf {
-  font-variant: small-caps;
-}
-
-
-.teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 3rem;
-}
-
-.teaser {
+h1, h2, h3, h4, .title {
   font-family: 'Google Sans', sans-serif;
+  color: #363636;
 }
 
+a {
+  color: #3273dc;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #1c4e9e;
+}
+
+/* 내비게이션 바 */
+.navbar {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.navbar-item {
+  font-weight: 500;
+}
+
+/* Hero 섹션 */
+.site-logo {
+  width: 80px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 0 auto 1rem;
+  display: block;
+}
 
 .publication-title {
+  font-weight: 700;
 }
 
-.publication-banner {
-  max-height: parent;
-
-}
-
-.publication-banner video {
-  position: relative;
-  left: auto;
-  top: auto;
-  transform: none;
-  object-fit: fit;
-}
-
-.publication-header .hero-body {
-}
-
-.publication-title {
-    font-family: 'Google Sans', sans-serif;
-}
-
-.publication-authors {
-    font-family: 'Google Sans', sans-serif;
-}
-
-.publication-venue {
-    color: #555;
-    width: fit-content;
-    font-weight: bold;
-}
-
-.publication-awards {
-    color: #ff3860;
-    width: fit-content;
-    font-weight: bolder;
-}
-
-.publication-authors {
-}
-
-.publication-authors a {
-   color: hsl(204, 86%, 53%) !important;
-}
-
-.publication-authors a:hover {
-    text-decoration: underline;
+.publication-subtitle {
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 1.5rem !important;
 }
 
 .author-block {
   display: inline-block;
+  margin-right: 10px;
+}
+.author-block a {
+  color: #3273dc;
+  font-weight: 600;
+  text-decoration: none;
+}
+.author-block a:hover {
+  text-decoration: underline;
 }
 
-.publication-banner img {
+/* 박스/카드 스타일 개선 */
+.box {
+  border-radius: 12px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.05), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background-color: #fff;
 }
 
-.publication-authors {
-  /*color: #4286f4;*/
+/* 이미지 및 비디오 컨테이너 */
+.figure-strip img, .main-result-img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.publication-video {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
-
-    overflow: hidden;
-    border-radius: 10px !important;
+.video-container video {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #000;
+  max-height: 360px;
 }
 
-.publication-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.image-box img {
+  border-radius: 6px;
+  border: 1px solid #eee;
+  padding: 5px;
+  background: #fff;
 }
 
-.publication-body img {
+figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-style: italic;
 }
 
-.results-carousel {
-  overflow: hidden;
+/* 텍스트 강조 */
+.has-text-primary {
+  color: #3273dc !important; /* Bulma 기본 primary 색상 또는 원하는 색으로 변경 */
 }
 
-.results-carousel .item {
-  margin: 5px;
-  overflow: hidden;
-  border: 1px solid #bbb;
-  border-radius: 10px;
-  padding: 0;
-  font-size: 0;
+/* 인용 박스 */
+.citation-box {
+  background-color: #f5f5f5;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #3273dc;
 }
 
-.results-carousel video {
-  margin: 0;
-}
-
-
-.interpolation-panel {
+/* 푸터 */
+footer.footer {
   background: #f5f5f5;
-  border-radius: 10px;
-}
-
-.interpolation-panel .interpolation-image {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.interpolation-video-column {
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-#interpolation-image-wrapper {
-  width: 100%;
-}
-#interpolation-image-wrapper img {
-  border-radius: 5px;
+  padding: 3rem 1.5rem;
+  margin-top: 3rem;
 }
